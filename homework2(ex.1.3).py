@@ -1,8 +1,8 @@
 name = 'Maksim'
-print(name)
+print("Имя: ", name)
 age = 36
-print(age)
+print("Возраст: ", age)
 New_age = age+1
-print(New_age)
+print("Новый возраст: ", New_age)
 is_student = True
-print(is_student)
+print("Является студентом: ", is_student)
