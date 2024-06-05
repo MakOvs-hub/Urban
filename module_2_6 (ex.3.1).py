@@ -34,18 +34,18 @@ print(result2)
 '''
 
 def single_root_words(root_word, *other_words):
-    same_words = []  # Список для хранения слов, удовлетворяющих условию
+    same_words = []  
     root_word = root_word.lower()  # Приведение корневого слова к нижнему регистру
 
     for word in other_words:
         word = word.lower()  # Приведение текущего слова к нижнему регистру
         if root_word in word or word in root_word:  # Проверка условия наличия в слове ключевого слова и наоборот
-            same_words.append(word)  # Добавление слова в список
+            same_words.append(word)  
 
     return same_words
 
 
-# Примеры использования функции
+
 result1 = single_root_words('rich', 'richiest', 'orichalcum', 'cheers', 'richies')
 result2 = single_root_words('Disablement', 'Able', 'Mable', 'Disable', 'Bagel')
 
