@@ -15,7 +15,7 @@ class Buiding:
 
     def __init__(self, name):
         self.name = name
-        # Buiding.total += 1 """2 Вариант"""
+        # Buiding.total += 1 """2 вариант"""
 
 while Buiding.total < 40:
      house = Buiding(f'Строение {Buiding.total}')
