@@ -27,7 +27,7 @@ class Shop:
                 file.close()
             else:
                 file = open(self.__file_name, 'a')
-                file.write(product + '\n') # порядок присвоения переменной и сравнения
+                file.write(f'{product}\n') 
                 file.close()
 
 
