@@ -11,11 +11,10 @@ def custom_write(file_name, strings):
     strings_positions = {}
     counter = 0
     for string in strings:
-        file.write(f'{string}\n')
         counter += 1
         strings_positions[(counter, file.tell())] = string
+        file.write(f'{string}\n')
     file.close()
     return strings_positions
 
 print(custom_write(file_name, strings))
-
