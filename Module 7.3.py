@@ -1,10 +1,8 @@
-'''Цель: применить на практике оператор with, вспомнить написание кода в парадигме ООП.
-
+'''
 Задача "Найдёт везде":
 Напишите класс WordsFinder, объекты которого создаются следующим образом:
 WordsFinder('file1.txt, file2.txt', 'file3.txt', ...).
-Объект этого класса должен принимать при создании неограниченного количество названий файлов и записывать их в атрибут file_names
- в виде списка или кортежа.
+Объект этого класса должен принимать при создании неограниченного количество названий файлов и записывать их в атрибут file_names в виде списка или кортежа.
 
 Также объект класса WordsFinder должен обладать следующими методами:
 get_all_words - подготовительный метод, который возвращает словарь следующего вида:
@@ -22,22 +20,18 @@ get_all_words - подготовительный метод, который во
 
 find(self, word) - метод, где word - искомое слово. Возвращает словарь, где ключ - название файла, значение - позиция первого такого слова в списке слов этого файла.
 count(self, word) - метод, где word - искомое слово. Возвращает словарь, где ключ - название файла, значение - количество слова word в списке слов этого файла.
-В методах find и count пользуйтесь ранее написанным методом get_all_words для получения названия файла и списка его слов.
+В методах find и count пользуйтесь ранее написанным методом get_all_words для получения названия файла и списка его слов. 
 Для удобного перебора одновременно ключа(названия) и значения(списка слов) можно воспользоваться методом словаря - item().
 
 for name, words in get_all_words().items():
-  # Логика методов find или count'''
-
+  # Логика методов find или count
+'''
 class WordsFinder:
-    all_words = {}
-
-
     def __init__(self, *file_names):
         self.file_names = file_names
 
-
-
     def get_all_words(self):
+        all_words = {}
         for file in self.file_names:
             with open(file, 'r', encoding='utf-8') as text:
                 words = []
@@ -48,22 +42,27 @@ class WordsFinder:
                             if char in marks:
                                 charm = charm.replace(char, '')
                         words.append(charm.lower())
-                self.all_words[file] = words
-        return self.all_words
+                all_words[file] = words
+        return all_words
 
-     def find(self, words):
-        for words in self.get_all_words():
-            if words.lower() in self.all_words.items():
-                word.find() = {(self.file_names): [position]}
-        return word
+    def find(self, word):
+        useless_dict = {}
+        for name, values in self.get_all_words().items():
+            for i in range(len(values)):
+                if values[i] == word.lower():
+                    useless_dict[name] = i+1
+                    break
+        return useless_dict
 
-    def count(self, words):
-        z = list()
-        for word in self.get_all_words():
-            if word.lower() == self.all_words():
-                word.append(z)
-        return len(z)
-
+    def count(self, word):
+        useless_dict2 = {}
+        count_ = 0
+        for name, values in self.get_all_words().items():
+            for i in range(len(values)):
+                if values[i] == word.lower():
+                    count_ += 1
+                    useless_dict2[name] = count_
+        return useless_dict2
 
 
 finder2 = WordsFinder('file2.txt')
