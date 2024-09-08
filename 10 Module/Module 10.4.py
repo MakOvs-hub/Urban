@@ -14,22 +14,34 @@ class Guest(threading.Thread):
         super().__init__()
         self.name = name
 
+
     def run(self):
-        print('Please wait.')
         sleep(randint(3,10))
-        print('Your turn.')
-
-class Cafe(queue):
-    def __init__(self):
-        super().__init__()
-        self.queue = queue
+        Table.guest = None
 
 
-    def guest_arrival(self, guests):
-        if queue.empty():
-            print(f' {self.guests} в очереди')
-        elif queue.get(Table()):
-            print(f' {self.guests} сел(-а) за стол номер {Table()}')
+class Cafe:
+    def __init__(self, *tables):
+        self.queue = queue.Queue()
+        self.tables = tables
+
+
+
+    def guest_arrival(self, *guests):
+        for table in list(tables):
+            for j in guests:
+                if table.guest != None:
+                    print(f' {j.name} в очереди')
+                    queue.Queue.put(j) # не кладет в очередь
+                    # th = threading.Thread(target=Guest.run, args=(*guests,))
+                    # th.start()
+                    # th.join()
+                else:
+                    table.guest = j.name
+                    print(f' {j.name} сел(-а) за стол номер {table.number}')
+                    #нужен ли лок потоков
+
+
     def discuss_guests(self):
         if not queue.empty() or thread.is_alive():
             print(f'{Guest.name} покушал(-а) и ушёл(ушла).\n Стол номер {Table()} свободен.')
@@ -38,9 +50,9 @@ class Cafe(queue):
         elif not queue.empty() or table.guest == None:
             queue.get(Table())
             print(f'{Guest.name} вышел(-ла) из очереди и сел(-а) за стол номер {Table()}')
-            tr = threading.Thread(target=Guest.run(), args = (Guest.name,))
-            tr.start()
-            tr.join()
+            th = threading.Thread(target=Guest.run, args=(tables,))
+            th.start()
+            th.join()  # нужен ли лок потоков
 
 # Создание столов
 tables = [Table(number) for number in range(1, 6)]
@@ -56,4 +68,4 @@ cafe = Cafe(*tables)
 # Приём гостей
 cafe.guest_arrival(*guests)
 # Обслуживание гостей
-cafe.discuss_guests()
+# cafe.discuss_guests()
