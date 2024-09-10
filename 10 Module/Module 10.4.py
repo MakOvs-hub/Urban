@@ -31,7 +31,6 @@ Guest - гость, поток, при запуске которого прои�
 Cafe - кафе, в котором есть определённое кол-во столов и происходит имитация прибытия гостей (guest_arrival) и их обслуживания (discuss_guests).
 
 '''
-
 from threading import Thread
 import queue
 from time import sleep
@@ -75,17 +74,23 @@ class Cafe:
                     print(f'{guest.name} в очереди')
 
     def discuss_guests(self):
-        for table in tables:
-            if not self.queue.empty() or table.guest.is_alive():
-                table.guest.join()
-                print(f'{table.guest.name} покушал(-а) и ушёл(ушла).\n Стол номер {table.number} свободен.')
-                table.guest = None
-                if not self.queue.empty() and table.guest == None:
-                    new_guest = self.queue.get()
-                    table.guest = new_guest
-                    new_guest.start()
-                    print(f'{new_guest.name} вышел(-ла) из очереди и сел(-а) за стол номер {table.number}')
-                    new_guest.join()
+        try:
+            while not self.queue.empty() or table.guest.is_alive():
+                for table in tables:
+                    if table.guest.is_alive() == False:
+                        print(f'{table.guest.name} покушал(-а) и ушёл(ушла).\n Стол номер {table.number} свободен.')
+                        table.guest = None
+                    if not self.queue.empty() and table.guest == None:
+                        new_guest = self.queue.get()
+                        table.guest = new_guest
+                        new_guest.start()
+                        print(f'{new_guest.name} вышел(-ла) из очереди и сел(-а) за стол номер {table.number}')
+                    if self.queue.empty() and table.guest.is_alive():
+                        table.guest.join()
+        except AttributeError:
+            pass
+
+
 
 
 
