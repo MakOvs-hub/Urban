@@ -1,1 +1,100 @@
+'''
+Задача данного кода в изменении размера и цветности картинок, хранящихся в некой директории. Использовать будем 2 метода: queue и pipe.
+'''
+import datetime
+import multiprocessing as mp
+from PIL import Image
+from queue import Empty  # импортируем для перехвата ошибок timeout
 
+
+def resize_image(image_paths, queue):
+    ''' открывает картинку из списка, изменяет размер и пробрасывает в очередь, не сохраняя. '''
+    for image_path in image_paths:
+        image = Image.open(image_path)
+        image = image.resize((800, 600))
+        queue.put((image_path, image))  # передаем как картинку, так и путь к ней
+
+
+def change_color(queue):
+    ''' извлекает из очереди, меняет цвет и сохраняет. '''
+    while True:  # для бесконечного извлечения из очереди картинок
+        try:
+            image_path, image = queue.get(timeout=5)  # извлекаем как картинку, так и путь к ней,
+            # timeout=5 в функции значит, что по истечении 5 секунд отсутствия объекта в очереди выкинет ошибку.
+        except Empty:
+            break
+        image = image.convert('L')  # L делает аргумент строковый l, конверт делает ее черно-белой
+        image.save(image_path)  # сохраняем как картинку с путем, по сути перезапись
+
+
+if __name__ == '__main__':
+    data = []
+    queue = mp.Queue()
+
+    for image in range(1, 201):
+        data.append(" ввести адрес обращения в файловой системе")
+
+    resize_process = mp.Process(target=resize_image,
+                                args=(data, queue))  # mp.Process данный класс работает похожим образом,
+    # как Thread, только процесс
+    change_process = mp.Process(target=resize_image, args=(queue,))
+
+    start = datetime.datetime.now()
+    resize_process.start()
+    change_process.start()
+    resize_process.join()
+    change_process.join()
+    end = datetime.datetime.now()
+    print(end - start)
+
+""" 
+Реализуем функционал кода используя pipe(труба). К плюсам метода стоит отнести ее "легковесность", 
+ну а минусом является - работа только с текстовыми файлами(байтовые объекты).
+"""
+
+import datetime
+import multiprocessing as mp
+from PIL import Image
+from queue import Empty  # импортируем для перехвата ошибок timeout
+
+
+def resize_image(image_paths, pipe: mr.Pipe, stop_event):
+    ''' открывает картинку из списка, изменяет размер и пробрасывает в трубу conn1, сохраняя ввиду особенности метода. '''
+    for image_path in image_paths:
+        image = Image.open(image_path)
+        image = image.resize((800, 600))
+        image.save(image_path)  # в связи с отсутствием функционала передачи медиа-файлов, мы вынуждены
+        # в pipe сохранить картинку с измененным размером, прежде чем передадим в функцию
+        pipe.send(image_path)  # функционал pipe не позволяет передавать медиа-файлы, поэтому передаем только путь
+    stop_event.set()  # условие остановки, когда труба пуста.
+
+
+def change_color(pipe: mr.Pipe, stop_event):
+    ''' извлекает из трубы conn2,открывает, меняет цвет и сохраняет. '''
+    while not stop_event is set():  # для бесконечного извлечения из очереди картинок
+        image_path = pipe.recv()  # таймаутов нет, поэтому str 83
+        image = Image.open(image_path)
+        image = image.convert('L')  # L делает аргумент строковый l, конверт делает ее черно-белой
+        image.save(image_path)  # сохраняем как картинку с путем, по сути перезапись
+
+
+if __name__ == '__main__':
+    data = []
+    conn1, conn2 = mp.Pipe()  # Pipe работает по принципу трубы, т.е. 2 конца - 1 кладет, другой - получает,поэтому он принимает
+    # соединение объекта, str - 91,93
+    stop_event = mp.Event()  # условие остановки процессов в многопроцессорной обработке.
+    for image in range(1, 201):
+        data.append(" ввести адрес обращения в файловой системе")
+
+    resize_process = mp.Process(target=resize_image,
+                                args=(data, conn1, stop_event))  # mp.Process данный класс работает похожим образом,
+    # как Thread, только процесс
+    change_process = mp.Process(target=resize_image, args=(conn2, stop_event))
+
+    start = datetime.datetime.now()
+    resize_process.start()
+    change_process.start()
+    resize_process.join()
+    change_process.join()
+    end = datetime.datetime.now()
+    print(end - start)
