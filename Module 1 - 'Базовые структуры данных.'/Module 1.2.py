@@ -10,7 +10,6 @@
 
 
 
-
 product = input('Введите название товара: ')
 price = float(input('Введите цену товара: '))
 weight = float(input('Введите вес товара: '))
