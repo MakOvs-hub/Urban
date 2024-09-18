@@ -1,0 +1,41 @@
+'''
+Выберите одну или несколько сторонних библиотек Python, например, requests, pandas, numpy, matplotlib, pillow.
+После выбора библиотек(-и) изучите документацию к ней(ним),
+ознакомьтесь с их основными возможностями и функциями. К каждой библиотеке дана ссылка на документацию ниже.
+'''
+from itertools import count
+
+import numpy as np
+import pandas as pd
+import requests
+
+'Requests'
+
+THE_URL = 'https://binaryjazz.us/wp-json/genrenator/v1/genre/'
+def res(i):
+    x = requests.get(i)
+    y = x.json()
+    return y
+print(f'Что бы послушать сегодня???....Хмммм.\n - А как насчет {res(THE_URL)}?')
+
+
+'NumPy'
+
+def nump_(y, z):
+    x = np.random.random((y,z))# создаст матрицу с y столбцами и z строками
+    print(f'\n\n\n Теперь работаем с NumPy - это матрица\n {x}')
+    print(x.min())
+    print(x.max())
+    print(x.sum())
+
+nump_(4,6)
+
+'Pandas'
+
+data = {'Elena': 44, ' Ivan': 10, ' Maksim': 21, ' Elizaveta': 25, ' Etara': 51, ' Alina': 29, ' Ainur': 48, ' Ruslan': 23, ' Valentin': 11, ' Dobrynya': 30, ' Harry': 48, ' Yana': 25, ' Slava': 42, ' Viktor': 44, ' Kristina': 39, ' Julia': 27, ' Svetlana': 26}
+
+x1 = pd.DataFrame(data, index=[count])
+print(x1)
+print(f'\nИнформация - {x1.info}')
+print(f'\nКортеж (строки, столбцы) - {x1.shape}')
+print(f'\nУдаление дубликатов - {x1.drop_duplicates}')
