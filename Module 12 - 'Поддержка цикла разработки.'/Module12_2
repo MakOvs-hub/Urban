@@ -73,9 +73,9 @@ class Tournament:
 
 class TournamentTest(unittest.TestCase):
     def setUp(self):
-        runner1 = Runner(name='Усэйн', speed=10)
-        runner2 = Runner(name='Андрей', speed=9)
-        runner3 = Runner(name='Ник', speed=3)
+        self.runner1 = Runner('Усэйн', 10)# без self питон не находит переменную в области видимости
+        self.runner2 = Runner('Андрей', 9)
+        self.runner3 = Runner('Ник', 3)
 
     @classmethod
     def setUpClass(cls):
@@ -83,29 +83,31 @@ class TournamentTest(unittest.TestCase):
 
     @classmethod
     def tearDownClass(cls):
-        for key, values in cls.all_results:
+        for key, values in cls.all_results.items():
             print(f'{key} - {values}\n')
+            for key_run, values_run in values.items(): # без items не итерирует
+                print(f'{key_run} - {values_run}\n')
 
 
     def test_run1(self):
-        tour1 = Tournament(distance=90, participants=(runner1, runner3))
-        tour1.start()
-        self.all_results.append(tour1.start())
-        self.assertTrue(self.all_results[1] == 'Ник')
+        tour1 = Tournament(90, self.runner1, self.runner3)
+        res1 = tour1.start()
+        TournamentTest.all_results[1] = res1 # добавляем в словарь как значение словарь с результатом забега
+        self.assertTrue(list(res1.values())[-1] == 'Ник') # значение необходимо представить как список и взять последний
 
 
     def test_run2(self):
-        tour2 = Tournament(distance=90, participants=(runner2, runner3))
-        tour2.start()
-        self.all_results.append(tour2.start())
-        self.assertTrue(self.all_results[1] == 'Ник')
+        tour2 = Tournament(90, self.runner2, self.runner3)
+        res2 = tour2.start()
+        TournamentTest.all_results[2] = res2
+        self.assertTrue(list(res2.values())[-1] == 'Ник')
 
 
     def test_run3(self):
-        tour3 = Tournament(distance=90, participants=(runner1, runner2, runner3))
-        tour3.start()
-        self.all_results.append(tour3.start())
-        self.assertTrue(self.all_results[2] == 'Ник')
+        tour3 = Tournament(90, self.runner1, self.runner2, self.runner3)
+        res3 = tour3.start()
+        TournamentTest.all_results[3] = res3
+        self.assertTrue(list(res3.values())[-1] == 'Ник')
 
 
 
