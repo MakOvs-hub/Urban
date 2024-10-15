@@ -92,21 +92,21 @@ class TournamentTest(unittest.TestCase):
     def test_run1(self):
         tour1 = Tournament(90, self.runner1, self.runner3)
         res1 = tour1.start()
-        TournamentTest.all_results[1] = res1 # добавляем в словарь как значение словарь с результатом забега
+        self.all_results[1] = res1 # добавляем в словарь как значение словарь с результатом забега
         self.assertTrue(list(res1.values())[-1] == 'Ник') # значение необходимо представить как список и взять последний
 
 
     def test_run2(self):
         tour2 = Tournament(90, self.runner2, self.runner3)
         res2 = tour2.start()
-        TournamentTest.all_results[2] = res2
+        self.all_results[2] = res2
         self.assertTrue(list(res2.values())[-1] == 'Ник')
 
 
     def test_run3(self):
         tour3 = Tournament(90, self.runner1, self.runner2, self.runner3)
         res3 = tour3.start()
-        TournamentTest.all_results[3] = res3
+        self.all_results[3] = res3
         self.assertTrue(list(res3.values())[-1] == 'Ник')
 
 
