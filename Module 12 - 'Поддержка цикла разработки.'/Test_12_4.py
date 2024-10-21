@@ -126,3 +126,54 @@ second = Runner('Илья', 5)
 t = Tournament(101, first, second)
 print(t.start())
 
+
+
+
+#Вариант с импортом файла.
+
+
+
+import rt_with_exceptions as rt
+import logging
+import unittest
+
+# logging.basicConfig(level=logging.INFO, filemode='w', filename='runner_tests.log', encoding='UTF-8', format='%(asctime)s | %(levelno)s | %(levelname)s | %(message)s')
+# logging.critical('5')
+
+class RunnerTest(unittest.TestCase):
+    is_frozen = True
+
+    @unittest.skipIf(is_frozen == False, "Тесты в этом кейсе заморожены")
+    def test_walk(self):
+        r1 = rt.Runner(name='Alex')
+        for _ in range(5):
+            r1.walk()
+        self.assertEqual(r1.distance, 25)
+        print('logging.info("walk")')
+
+    @unittest.skipIf(is_frozen == False, "Тесты в этом кейсе заморожены")
+    def test_run(self):
+        r2 = rt.Runner(name='John')
+        for _ in range(10):
+            r2.run()
+        self.assertEqual(r2.distance, 100)
+        print('logging.info("run")')
+
+
+    @unittest.skipIf(is_frozen == False, "Тесты в этом кейсе заморожены")
+    def test_challenge(self):
+        r3 = rt.Runner(name='Emma')
+        r4 = rt.Runner(name='Olivia')
+        for _ in range(10):
+            r3.walk()
+            r4.run()
+        self.assertNotEqual(r3.distance, r4.distance)
+        print('logging.info("tournament")')
+
+
+if __name__ == '__main__':
+    print('Абра-Кадабра')
+    unittest.main()
+    logging.basicConfig(level=logging.INFO, filemode='w', filename='runner_tests.log',
+                        encoding='UTF-8', format='%(asctime)s | %(levelno)s | %(levelname)s | %(message)s')
+    logging.critical('5')
