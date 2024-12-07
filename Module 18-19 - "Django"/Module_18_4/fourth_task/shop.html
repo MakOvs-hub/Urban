@@ -1,0 +1,28 @@
+{% extends 'fourth_task/menu.html' %}
+}<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Игры</title>
+</head>
+<body>
+{% block pagename %}
+    <h1> Игры </h1>
+{%endblock%}
+<br>
+        {% block menu %}
+        {{block.super}}
+        {%endblock%}
+<br>
+    {% block content %}
+    <ul>
+        <li>{{first}} <button>Купить</button> </li>
+        <li>{{second}} <button>Купить</button> </li>
+        <li> {{third}} <button>Купить</button> </li>
+
+    </ul>
+<a href="http://127.0.0.1:8000/platform/"><button>Вернуться обратно.</button></a>
+    {%endblock%}
+
+</body>
+</html>
