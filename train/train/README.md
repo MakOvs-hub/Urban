@@ -63,43 +63,58 @@ ax.plot(x, y)
 ```python
 plt.show()
 ```
-По такому принципу строятся все базовые визуализации библиотеки, такие как:
- -![Диаграмма рассеяния](https://github.com/MakOvs-hub/Urban/blob/main/train/train/plt_scatter.png)
-!```python
+![Sin](train/train/plt_sin.png)
+
+###По такому принципу строятся все базовые визуализации библиотеки, такие как:
+ - Диаграмма рассеяния.
+![Диаграмма рассеяния](train/train/plt_scatter.png)
+```python
 x = np.random.uniform (0, 1, 1000)
 y = np.random.uniform (0, 1, 1000)
 ax.scatter(x,y)
 ```
-
-#Гистограмма
+ - Гистограмма.
+![Гистограмма](train/train/plt_bar.png)
+```python
 x = np.arange (10)
 y = np.random.uniform (0, 1, 10)
-ax.bar(x,y)
-
-#'Тепловая карта'
+ax.bar(x,y
+```
+ - 'Тепловая карта'.
+![Тепловая карта](train/train/plt_imshow.png)
+```python
 z = np.random.uniform (0, 1, (8,8))
 ax.imshow(z)
-
-#Контурная визуализация тепловой карты
+```
+ - Контурная визуализация тепловой карты.
+![Контурная визуализация тепловой карт](train/train/plt_countourf.png)
+```python
 z = np.random.uniform (0, 1, (8,8))
 ax.contourf(z)
-
-#Круговая диаграмма
+```
+ - Круговая диаграмма
+![Круговая диаграмма](train/train/plt_pie.png)
+```python
 z = np.random.uniform (0, 1, 5)
 label = ['Subaru', 'Honda', 'Toyota', 'Suzuki', 'Mitsubishi']
 exp = [0.07, 0.02, 0, 0, 0.01]
 fig, (ax) = plt.subplots()
 plt.title('Ваша марка машины?', fontsize=16)
-ax.pie(z, labels=label, explode=exp)
-
-
+ax.pie(z, labels=label, explode=exp).
+```
+Стоит отметить богатый функционал объектно-ориентированных возможностей. Без использования сторонних возможностей мы можем форматировать отображаемые данные:
+ - объединяя несколько отображений для повышения информативности или 
+![Вариант компиляции 1](train/train/plt_comp1.png)
+```python
 #Вариант компиляции 1
 x = np.arange (10)
 y = np.random.uniform (0, 1, 10)
 ax.plot(x,y, color = 'green')
 ax.bar(x,y)
-
-#Вариант компиляции 2
+```
+ - разнести их по разным полям отображения, изменяя стили, цвет и виды элементов построения.
+![Вариант компиляции 2](train/train/plt_comp2.png)
+```python
 x=np.linspace(0, 10, 100)
 y1, y2 = np.sin(x), np.cos(x)
 fig, (ax1, ax2) = plt.subplots(2, 1)
@@ -107,8 +122,10 @@ ax1.set_title('Sin wave')
 ax2.set_title('Cos wave')
 ax1.plot(x, y1, color='C1', label='Sin', lw=5, linestyle='--')
 ax2.plot(x, y2, color='C0', label='Cos', lw=2, marker='.')
-
-#3D- отображение
+```
+Работа с 3D изображением, также встроена в библиотеку.
+![3D](train/train/plt_3D.png)
+```python
 f = plt.figure(figsize=(15, 10))
 ax_3d = f.add_subplot(projection='3d')
 z = np.linspace(0, 1, 100)
@@ -118,7 +135,7 @@ ax_3d.scatter(x, y, z, color='red', alpha=1)
 ax_3d.set_xlabel('x', size='15')
 ax_3d.set_ylabel('y', size='15')
 ax_3d.set_zlabel('z', size='15')
-
+```
 
  
 ![название картинки](ссылка)
