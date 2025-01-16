@@ -1,32 +1,32 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
+# Базовая настройка
 x = np.linspace(0, 10*np.pi, 100)
 y = np.sin(x)
-
 fig, ax = plt.subplots() #создаем область для рисунка и оси
 ax.plot(x, y) #Добавляем данные на график
 plt.show()
 
-
+#Точечная диаграмма
 x = np.random.uniform (0, 1, 1000)
 y = np.random.uniform (0, 1, 1000)
 ax.scatter(x,y)
 
-
+#Гистограмма
 x = np.arange (10)
 y = np.random.uniform (0, 1, 10)
 ax.bar(x,y)
 
-
+#'Тепловая карта'
 z = np.random.uniform (0, 1, (8,8))
 ax.imshow(z)
 
-
+#Контурная визуализация тепловой карты
 z = np.random.uniform (0, 1, (8,8))
 ax.contourf(z)
 
-
+#Круговая диаграмма
 z = np.random.uniform (0, 1, 5)
 label = ['Subaru', 'Honda', 'Toyota', 'Suzuki', 'Mitsubishi']
 exp = [0.07, 0.02, 0, 0, 0.01]
@@ -35,13 +35,13 @@ plt.title('Ваша марка машины?', fontsize=16)
 ax.pie(z, labels=label, explode=exp)
 
 
-
+#Вариант компиляции 1
 x = np.arange (10)
 y = np.random.uniform (0, 1, 10)
 ax.plot(x,y, color = 'green')
 ax.bar(x,y)
 
-
+#Вариант компиляции 2
 x=np.linspace(0, 10, 100)
 y1, y2 = np.sin(x), np.cos(x)
 fig, (ax1, ax2) = plt.subplots(2, 1)
@@ -50,7 +50,7 @@ ax2.set_title('Cos wave')
 ax1.plot(x, y1, color='C1', label='Sin', lw=5, linestyle='--')
 ax2.plot(x, y2, color='C0', label='Cos', lw=2, marker='.')
 
-
+#3D- отображение
 f = plt.figure(figsize=(15, 10))
 ax_3d = f.add_subplot(projection='3d')
 z = np.linspace(0, 1, 100)
