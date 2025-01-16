@@ -63,37 +63,37 @@ ax.plot(x, y)
 ```python
 plt.show()
 ```
-![Sin](train/train/plt_sin.png)
+![Sin](plt_sin.png)
 
-###По такому принципу строятся все базовые визуализации библиотеки, такие как:
+### По такому принципу строятся все базовые визуализации библиотеки, такие как:
  - Диаграмма рассеяния.
-![Диаграмма рассеяния](train/train/plt_scatter.png)
+![Диаграмма рассеяния](plt_scatter.png)
 ```python
 x = np.random.uniform (0, 1, 1000)
 y = np.random.uniform (0, 1, 1000)
 ax.scatter(x,y)
 ```
  - Гистограмма.
-![Гистограмма](train/train/plt_bar.png)
+![Гистограмма](plt_bar.png)
 ```python
 x = np.arange (10)
 y = np.random.uniform (0, 1, 10)
 ax.bar(x,y
 ```
  - 'Тепловая карта'.
-![Тепловая карта](train/train/plt_imshow.png)
+![Тепловая карта](plt_imshow.png)
 ```python
 z = np.random.uniform (0, 1, (8,8))
 ax.imshow(z)
 ```
  - Контурная визуализация тепловой карты.
-![Контурная визуализация тепловой карт](train/train/plt_countourf.png)
+![Контурная визуализация тепловой карт](plt_countourf.png)
 ```python
 z = np.random.uniform (0, 1, (8,8))
 ax.contourf(z)
 ```
  - Круговая диаграмма
-![Круговая диаграмма](train/train/plt_pie.png)
+![Круговая диаграмма](plt_pie.png)
 ```python
 z = np.random.uniform (0, 1, 5)
 label = ['Subaru', 'Honda', 'Toyota', 'Suzuki', 'Mitsubishi']
@@ -104,7 +104,7 @@ ax.pie(z, labels=label, explode=exp).
 ```
 Стоит отметить богатый функционал объектно-ориентированных возможностей. Без использования сторонних возможностей мы можем форматировать отображаемые данные:
  - объединяя несколько отображений для повышения информативности или 
-![Вариант компиляции 1](train/train/plt_comp1.png)
+![Вариант компиляции 1](plt_comp1.png)
 ```python
 #Вариант компиляции 1
 x = np.arange (10)
@@ -113,7 +113,7 @@ ax.plot(x,y, color = 'green')
 ax.bar(x,y)
 ```
  - разнести их по разным полям отображения, изменяя стили, цвет и виды элементов построения.
-![Вариант компиляции 2](train/train/plt_comp2.png)
+![Вариант компиляции 2](plt_comp2.png)
 ```python
 x=np.linspace(0, 10, 100)
 y1, y2 = np.sin(x), np.cos(x)
@@ -124,7 +124,7 @@ ax1.plot(x, y1, color='C1', label='Sin', lw=5, linestyle='--')
 ax2.plot(x, y2, color='C0', label='Cos', lw=2, marker='.')
 ```
 Работа с 3D изображением, также встроена в библиотеку.
-![3D](train/train/plt_3D.png)
+![3D](plt_3D.png)
 ```python
 f = plt.figure(figsize=(15, 10))
 ax_3d = f.add_subplot(projection='3d')
