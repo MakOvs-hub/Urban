@@ -64,8 +64,8 @@ ax.plot(x, y)
 plt.show()
 ```
 По такому принципу строятся все базовые визуализации библиотеки, такие как:
- -[Точечная диаграмма](https://github.com/MakOvs-hub/Urban/blob/main/train/train/plt_scatter.png)
-```python
+ -![Диаграмма рассеяния](https://github.com/MakOvs-hub/Urban/blob/main/train/train/plt_scatter.png)
+!```python
 x = np.random.uniform (0, 1, 1000)
 y = np.random.uniform (0, 1, 1000)
 ax.scatter(x,y)
