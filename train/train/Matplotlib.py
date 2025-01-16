@@ -8,7 +8,7 @@ fig, ax = plt.subplots() #создаем область для рисунка и
 ax.plot(x, y) #Добавляем данные на график
 plt.show()
 
-#Точечная диаграмма
+#Диаграмма рассеяния
 x = np.random.uniform (0, 1, 1000)
 y = np.random.uniform (0, 1, 1000)
 ax.scatter(x,y)
