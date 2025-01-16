@@ -8,10 +8,6 @@ y = [10, 50, 30]
 sns.barplot(x=x, y=y)
 plt.show()
 
-
-df = sns.load_dataset("penguins")
-sns.pairplot(df, hue="species")
-plt.show()
 #Диаграмма рассеяния
 tips = sns.load_dataset("tips")
 
@@ -20,8 +16,10 @@ sns.relplot(
     x="total_bill", y="tip", col="time",
     hue="smoker", style="smoker", size="size",
 )
-plt.show()
 
 # Скрипичная диаграмма
 sns.catplot(data=tips, kind="violin", x="day", y="total_bill", hue="smoker", split=True)
-plt.show()
+
+#Составная диаграмма
+df = sns.load_dataset("penguins")
+sns.pairplot(df, hue="species")
