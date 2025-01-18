@@ -8,4 +8,7 @@ def buy(request):
     return render(request, "third_task/shop.html")
 
 def sold(request):
-    return render(request, "third_task/gift.html")
+    products = [
+    "Half-Life 2", "Atomic Heart", "Sims2"
+]
+    return render(request, "third_task/gift.html", , {'products': products})
