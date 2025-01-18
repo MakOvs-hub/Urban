@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}Телефоны{% endblock %}
+
+{% block content %}
+<h2> Список телефонов </h2>
+<ul>
+    {% for product in products %}
+    <li>
+        <strong>{{ product.name }}</strong> — {{ product.price }} ₽
+        <br>
+        Категория: {{ product.category.name }}
+        <br>
+        Добавлено: {{ product.created_at|date:"d M Y" }} <!--  Фильтр |date форматирует дату -->
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}

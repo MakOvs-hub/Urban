@@ -1,0 +1,32 @@
+{% load static %}   <!-- подключить файл стилей -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Мой интернет-магазин{% endblock %}</title>    <!-- В блоке title можно указывать заголовок для каждой страницы.-->
+    <link rel="stylesheet" href="{% static 'catalog/styles.css' %}">
+</head>
+<body>
+  <header>
+      <!-- Добавление логотипа магазина -->
+    <img src="{% static 'catalog/images/winter.png' %}" alt="Логотип магазина" width="350"> <!-- alt - текст, который будет отображаться, если изображение не загрузится; width устанавливает ширину логотипа в 100 пикселей.
+                                                                                                Вы можете изменить этот параметр на свой вкус. -->
+    <h1>Добро пожаловать в мой интернет-магазин</h1>
+    <nav>
+        <a href="/">Главная</a>
+        <a href="/products/">Каталог</a>
+        <a href="/contact/">Контакты</a>
+    </nav>
+  </header>
+  <main>
+    {% block content %}     <!-- block создают "зоны", которые можно переопределять в дочерних шаблонах.-->
+  <!-- Контент страницы -->
+    {% endblock %}
+  </main>
+  <footer>
+    <p> © 2024, Интернет-магазин </p>
+  </footer>
+
+</body>
+</html>

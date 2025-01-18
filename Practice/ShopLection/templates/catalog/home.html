@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}Главная{% endblock %}
+
+{% block content %}
+<h1>Лучший потому-что свой)</h1>
+
+<h2>Категории товаров</h2>
+<ul>
+    {% for category in categories %}  <!-- Мы выводим список категорий с помощью цикла. -->
+      <li>
+        <a href="/category/{{ category.name|urlencode }}/">{{ category.name }}</a>
+      </li>
+    {% endfor %}
+</ul>
+{% endblock %}

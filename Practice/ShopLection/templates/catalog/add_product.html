@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}Добавить товар{% endblock %} <!-- Заголовок переопределен через  block title .-->
+
+{% block content %} <!-- Форма добавляется в блок  block content  -->
+<h2> Добавить новый товар</h2>
+
+<form method="post"> <!-- Форма для добавления нового товара. -->
+    {% csrf_token %} <!-- обязательное поле, необходимо для безопасности -->
+    <label for="name"> Название: </label>
+    <input type="text" id="name" name="name" required>
+
+    <label for="category"> Категория: </label>
+    <select id="category" name="category" required>
+        <option value="телефоны">Телефоны</option>
+        <option value="планшеты">Планшеты</option>
+        <option value="аксессуары">Аксессуары</option>
+        <option value="ноутбуки">Ноутбуки</option>
+    </select>
+
+    <label for="price"> Цена: </label>
+    <input type="number" id="price" name="price" required>
+
+    <button type="submit">Добавить</button>
+</form>
+{% endblock %}l>

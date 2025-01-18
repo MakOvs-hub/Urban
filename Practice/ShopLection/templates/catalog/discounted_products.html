@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}Товары со скидкой{% endblock %}
+
+{% block content %}
+<h2>Товары со скидкой</h2>
+<ul>
+    {% for product in products %}
+        <li>
+            <strong>{{ product.name }}</strong>— {{ product.price }} ₽<br>
+            Категория: {{ product.category.name }}
+        </li>
+    {% empty %}
+        <p>Сейчас нет товаров со скидкой.</p>
+    {% endfor %}
+</ul>
+{% endblock %}
+
+
+
+
+
+
+
